@@ -23,3 +23,10 @@ addItem a root@(Node v l r)
     recR a acc curr@(Node v l r)
       | r == Nil  = addTree acc (createNode a)
       | otherwise = addTree acc (addItem a r)
+
+search :: Ord a => a -> Tree a -> Maybe a
+search k Nil =  Nothing
+search k curr@(Node v l r)
+  | k == v    = Just k
+  | k < v     = search k l
+  | otherwise = search k r
